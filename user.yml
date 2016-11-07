@@ -1,0 +1,12 @@
+---
+- name: Create user
+  hosts: host1.example.com host2.example.com 
+  become: yes
+  vars_files:
+    - userfile.yml
+  tasks:
+  - name: Creates the user
+    user:
+      name: "{{ user }}"
+
+
