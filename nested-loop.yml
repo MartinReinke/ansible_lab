@@ -1,0 +1,11 @@
+---
+- name: Nested loop demo
+  hosts: host1.example.com
+  become: no
+  tasks:
+    - name: Loop over the nested items
+      shell: echo "nested test a={{ item[0] }} b={{ item[1] }} c={{ item[2] }}"
+      with_nested:
+        - [ 'red', 'blue' ]
+        - [ 1, 2 ]
+        - [ 'up', 'down']

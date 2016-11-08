@@ -1,0 +1,19 @@
+---
+- name: Enable Apache2 module
+  hosts: host1.example.com
+  become: yes
+  vars:
+    apache_module: wsgi
+  tasks:
+  - block:
+      - apache2_module:
+          state: present
+          name: "{{apache_module}}"
+    rescue:
+      - service:
+          name: httpd
+          state: stopped
+    always:
+      - debug:
+          msg: >
+            "This is always executed"

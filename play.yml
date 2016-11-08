@@ -1,0 +1,2 @@
+- debug: msg="The free memory for this system is {{ ansible_memfree_mb }}"
+- debug: var=output verbosity=2

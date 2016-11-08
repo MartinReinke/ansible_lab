@@ -1,0 +1,10 @@
+---
+- name: Install vsftpd on webservers
+  hosts: host*.example.com
+  become: yes
+  tasks:
+    - name: Install FTP server when host in webserver group
+      yum:
+        name: vsftpd
+        state: latest
+      when: inventory_hostname in groups["webserver"]

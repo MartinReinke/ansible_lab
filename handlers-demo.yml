@@ -1,0 +1,16 @@
+---
+- name: Install MariaDB and change motd
+  hosts: host2.example.com
+  become: yes
+  tasks:
+  - name: Install latest MariaDB
+    yum:
+      name: mariadb
+      state: latest
+    notify:
+      - change_motd
+  handlers:
+    - name: change_motd
+      copy:
+         content="This is a database server\n"
+         dest=/etc/motd
